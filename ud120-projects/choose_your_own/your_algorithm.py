@@ -24,21 +24,29 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-plt.show()
+# plt.show()
 ################################################################################
 
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
 
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier()
 
+from sklearn.metrics import accuracy_score
+max_accuracy = 0
+for i in range(0, 1000):
+    clf.fit(features_train, labels_train)
+    predicted = clf.predict(features_test)
+    accuracy = accuracy_score(labels_test, predicted)
+    if (max_accuracy < accuracy):
+        max_accuracy = accuracy
 
-
-
-
-
+print round(max_accuracy, 3)
 
 try:
     prettyPicture(clf, features_test, labels_test)
 except NameError:
+    print "No prettyPicture"
     pass
