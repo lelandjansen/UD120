@@ -1,0 +1,7 @@
+*.pyc linguist-vendored
+*.tgz linguist-vendored
+*.plk linguist-vendored
+*.txt linguist-vendored
+ud120-projects/enron_mail_20110402/* linguist-vendored
+ud120-projects/maildir/* linguist-vendored
+ud120-projects/final_project/emails_by_address/* linguist-vendored
