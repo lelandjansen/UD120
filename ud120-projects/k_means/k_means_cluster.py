@@ -44,7 +44,7 @@ data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r")
 data_dict.pop("TOTAL", 0)
 
 
-def data_limits(item):
+def minmax(item):
     values = set()
     for person, info in data_dict.iteritems():
         if info[item] != 'NaN':
@@ -52,10 +52,11 @@ def data_limits(item):
     return min(values), max(values)
 
 print 'exercised_stock_options'
-print data_limits('exercised_stock_options')
+print minmax('exercised_stock_options')
 print 
 print 'salary'
-print data_limits('salary')
+print minmax('salary')
+
 
 ### the input features we want to use 
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
@@ -67,6 +68,13 @@ features_list = [poi, feature_1, feature_2]
 # features_list = [poi, feature_1, feature_2, feature_3]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
+
+
+
+from sklearn import preprocessing
+scaler = preprocessing.MinMaxScaler().fit(finance_features)
+print scaler.transform(numpy.array([[200000, 1000000]]))
+
 
 
 ### in the "clustering with 3 features" part of the mini-project,
